@@ -1,0 +1,8 @@
+<h1>article detail page</h1>
+<ul>
+  <li>title: <%= @article.title %></li>
+  <li>description: <%= @article.description %></li>
+</ul>
+
+<%= link_to "Edit", edit_article_path(@article) %> | <%= link_to "Delete", article_path(@article), method: :delete, data: { confirm: "Are you sure?" } %> | 
+<%= link_to "Return to article listing", articles_path %>
