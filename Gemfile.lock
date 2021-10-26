@@ -44,6 +44,7 @@ GEM
     ast (2.4.2)
     autoprefixer-rails (10.3.3.0)
       execjs (~> 2)
+    bcrypt (3.1.13)
     bindex (0.8.1)
     bootstrap (4.4.1)
       autoprefixer-rails (>= 9.1.0)
@@ -214,6 +215,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootstrap (~> 4.4.1)
   byebug
   capybara (>= 2.15)

@@ -1,0 +1,23 @@
+<% if @user.errors.any? %> 
+  <h1>have issues signing up</h1>
+  <% @user.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+<% end  %>
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <p>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </p>
+   <p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </p>
+  <%= f.submit %>
+<% end %>
+

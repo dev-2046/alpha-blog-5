@@ -2,6 +2,7 @@
 <ul>
   <li>title: <%= @article.title %></li>
   <li>description: <%= @article.description %></li>
+  <li>user: <%= @article.user.username if @article.user %>
 </ul>
 
 <%= link_to "Edit", edit_article_path(@article) %> | <%= link_to "Delete", article_path(@article), method: :delete, data: { confirm: "Are you sure?" } %> | 
