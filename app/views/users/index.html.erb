@@ -1,0 +1,26 @@
+<h1>Alpha Bloggers</h1>
+
+<% if @users.empty? %>
+  <h2>You have no users</h2>
+<% else %>
+ <table>
+  <thead>
+    <th>User name</th>
+    <th>Profile pic</th>
+    <th colspan="4">Actions</th>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= gravatar_for(user) %></td>
+         <td>
+          <%= link_to "View profile", user_path(user) %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_user_path(user)  %>
+        </td>
+      </tr>
+    <% end %> 
+  </table>
+<% end %>

@@ -1,7 +1,8 @@
 <h1>
-  Show list of articles by
+  Show list of articles
 </h1>
 
+<%= will_paginate @articles %>
 <%= render "article" %>
 
 <p><%= link_to "Create new article", new_article_path %></p>
