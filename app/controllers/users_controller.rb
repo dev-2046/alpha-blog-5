@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
-  
+  before_action :set_user, only: %i[show edit update destroy]
+  before_action :require_user, only: [:edit, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+
   def new
     @user = User.new
   end
@@ -13,12 +17,11 @@ class UsersController < ApplicationController
     @articles = @user.articles
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "Your account information has been updated"
+      flash[:notice] = 'Your account information has been updated'
       redirect_to @user
     else
       render 'edit'
@@ -29,18 +32,34 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "Welcome to the alpha blog, you have sign up"
+      flash[:notice] = 'Welcome to the alpha blog, you have sign up'
       redirect_to @user
-    else 
+    else
       render 'new'
     end
   end
 
+  def destroy
+    @user.destroy
+    session[:user_id] = nil
+    flash[:notice] = "Account and all associated articels successfully deleted"
+    redirect_to articles_path
+  end
+
   private
+
   def set_user
     @user = User.find(params[:id])
   end
+
   def user_params
     params.require(:user).permit(:username, :email, :password)
+  end
+
+  def require_same_user
+    if current_user != @user
+      flash[:alert] = "You can only edit your own account"
+      redirect_to @user
+    end
   end
 end
