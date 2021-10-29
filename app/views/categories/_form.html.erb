@@ -1,0 +1,15 @@
+<% if @category.errors.any? %> 
+  <h1>The following errors have prevented the category from being saved</h1>
+  <% @category.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+<% end  %>
+
+<%= form_with(model: @category, local: true) do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <%= f.submit %>
+<% end %>
+
