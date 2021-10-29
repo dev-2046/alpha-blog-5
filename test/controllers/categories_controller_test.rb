@@ -8,7 +8,6 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
                               password: 'password',
                               admin: true
                               )
-    
   end
 
   test "should get index" do
